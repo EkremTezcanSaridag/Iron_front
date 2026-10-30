@@ -1,17 +1,28 @@
-# Sığınak upload keystore
+# Yayın imzası (yerel — repoda yok)
 
-PKCS12 keystore used to **release-sign** sideload APKs. This is not the
-well-known Android debug cert (`CN=Android Debug`), which PackageInstaller
-on some Android 16 / Nothing OS builds treats as an invalid package.
+Bu depo herkese açıktır. PKCS12 keystore (`.jks`) ve `key.properties`
+**asla commit edilmez**.
 
-| Field | Value |
-| --- | --- |
-| File | `siginak-upload.jks` |
-| Store type | PKCS12 |
-| Alias | `siginak` |
-| Store / key password | `siginakupload` |
-| Algorithm | RSA 2048 |
-| Validity | 10000 days |
+## Keystore üret
 
-Checked into the repo on purpose so CI and `./export_android.sh` can produce
-the same signature. Rotate it before any Play Store listing.
+```bash
+keytool -genkeypair -keystore ~/.android/siginak-release.jks -storetype PKCS12 \
+  -alias siginak -keyalg RSA -keysize 2048 -validity 10000 \
+  -dname "CN=Siginak, OU=Games, O=Siginak, L=Istanbul, ST=Istanbul, C=TR"
+```
+
+Şifreleri `keytool` sorunca girin; argv üzerine yazmayın.
+
+## `android/key.properties` (git dışı)
+
+```
+storePassword=<sizin-sifreniz>
+keyPassword=<sizin-sifreniz>
+keyAlias=siginak
+storeFile=/home/<user>/.android/siginak-release.jks
+```
+
+Flutter `android/.gitignore` zaten `key.properties` ve `*.jks` yok sayar.
+Kök `.gitignore` da `*.jks` / `key.properties` içerir.
+
+Play Store'a çıkmadan önce kendi anahtarınızı kullanın.

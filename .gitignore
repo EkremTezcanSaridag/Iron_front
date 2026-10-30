@@ -1,28 +1,44 @@
-# Godot 4+ specific ignores
-.godot/
-*.import
-*.translation
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+.widget_preview/
 
-# Godot-specific
-.mono/
-data_*/
+# Android
+/android/app/debug
+/android/app/profile
+/android/app/release
+/android/.gradle
+/android/local.properties
+/android/.cxx
 
-# Build tools (not part of the project)
-tools/
-
-# Godot Android Gradle template (install via Project > Install Android Build Template)
-android/
+# Keystore — never commit (public repo)
+*.jks
+*.keystore
+key.properties
+android/key.properties
+keystore/*.jks
 
 # Local APKs
 *.apk
 *.apk.idsig
+*.aab
 
-# IDE
-.vscode/
+# SDK / tools (not part of the project)
+tools/
+
+# IDE / OS
 .idea/
+.vscode/
+*.iml
 *.swp
 *.swo
-
-# OS
 .DS_Store
 Thumbs.db
+
+# Symbolication / obfuscation
+app.*.symbols
+app.*.map.json
