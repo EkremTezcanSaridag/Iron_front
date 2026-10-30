@@ -2,18 +2,36 @@
 
 Felaketten sonra yeraltında bir sığınağı yönetirsiniz. İnsanları odalara yerleştirin, yiyecek-su-elektrik dengesini tutun, dışarı sefer gönderin, telsizi onarıp kurtarılmayı bekleyin.
 
-**Sürüm:** 0.2.0 · **Paket:** `com.siginak.game` · **Yön:** dikey (portrait)
+**Sürüm:** 0.2.1 · **Paket:** `com.siginak.game` · **Yön:** dikey (portrait)
 
-## İndir (Android 16)
+## İndir (Nothing CMF Phone 1 / Android 16)
 
-https://github.com/EkremTezcanSaridag/Iron_front/releases/download/v0.2.0/Siginak-v0.2.0-debug.apk
+https://github.com/EkremTezcanSaridag/Iron_front/releases/download/v0.2.1/Siginak-v0.2.1.apk
 
-Telefonda **Bilinmeyen kaynaklardan yükleme** iznini açıp APK'yı kurun.
+Dosya yaklaşık **80 MB** olmalı (yalnızca arm64). Daha küçükse indirme yarım kalmıştır — silip tekrar indirin.
+
+### Telefona kurulum
+
+v0.2.0 ve önceki Iron Fronts APK'ları **hata ayıklama (debug)** imzalıydı. Nothing OS 3 / Android 16 **İndirilenler** yükleyicisi bunları `"Paket geçersiz göründüğünden uygulama yüklenemedi"` diye reddediyor. Bu sürüm **yayın imzalı**, `debuggable` kapalı, v2+v3 imza.
+
+1. Ayarlar → Güvenlik → **Bilinmeyen uygulamalar** / **Bu kaynaktan yükle** iznini **Dosyalar** (Files) için açın.
+2. Chrome / GitHub'ın **İndirilenler** listesinden kurmayın. **Dosyalar** uygulamasını açın → İndirilenler → `Siginak-v0.2.1.apk` → Yükle.
+3. Play Protect uyarı verirse **Yine de yükle**.
+4. Eski Sığınak / Iron Fronts kuruluysa önce kaldırın (farklı imza).
+
+Hâlâ olmazsa USB:
+
+```bash
+adb install -r Siginak-v0.2.1.apk
+```
+
+Geliştirici seçenekleri + USB hata ayıklama açık olmalı. `adb` gerçek `INSTALL_*` kodunu yazar; İndirilenler uygulaması onu gizler.
 
 - minSdk 24 / targetSdk **36**
-- ABI: **arm64-v8a** + x86_64 (emülatör için)
-- 16 KB sayfa hizası, uncompressed native libs, imza v2+v3
+- ABI: **yalnızca arm64-v8a** (CMF Phone 1)
+- 16 KB sayfa hizası, uncompressed `.so`, imza **v2 + v3**
 - Godot 4.7.2 Gradle (AGP 8.6.1, NDK 29, JDK 17)
+- Tek `MAIN`/`LAUNCHER` etkinliği: `com.godot.game.GodotApp`
 
 ## Nasıl oynanır
 
@@ -33,10 +51,10 @@ Yaşam alanı, hidroponik, su arıtma, jeneratör, depo, revir, atölye, telsiz.
 
 ```bash
 # Godot 4.7.2 + OpenJDK 17 + Android SDK 36 / NDK 29
-./export_android.sh Siginak-v0.2.0-debug.apk
+./export_android.sh /tmp/Siginak-v0.2.1.apk
 ```
 
-Gradle çıktısı önce `/tmp` altına yazılır, sonra kopyalanır. `zipalign -P 16` ve ELF 16 KB doğrulanır. apktool yok.
+Yayın keystore: `keystore/siginak-upload.jks` (şifre `keystore/README.md` içinde). Gradle çıktısı `/tmp` altına yazılır. `zipalign -P 16`, ELF 16 KB ve arm64-only doğrulanır.
 
 Varlıkları yeniden üretmek: `python3 build_assets.py` (Kenney ayna + Barlow fontları gerekir).
 

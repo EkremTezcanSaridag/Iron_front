@@ -57,7 +57,7 @@ func _ready() -> void:
 	quitb.pressed.connect(func() -> void: get_tree().quit())
 	v.add_child(quitb)
 	v.add_child(_spacer(24))
-	var cred := UiTheme.label("Kenney.cc0  ·  Barlow (OFL)  ·  v0.2.0", 20, Color("8a7b68"))
+	var cred := UiTheme.label("Kenney.cc0  ·  Barlow (OFL)  ·  v0.2.1", 20, Color("8a7b68"))
 	cred.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	v.add_child(cred)
 
