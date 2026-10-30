@@ -1,6 +1,6 @@
 # Iron Fronts - Birinci Dünya Savaşı Stratejisi
 
-**Versiyon:** 0.1.1 (İlk oynanabilir sürüm — Android kurulum düzeltmesi)
+**Versiyon:** 0.1.2 (Godot 4.7.2 Gradle APK — Android 16 / 16 KB sayfa boyutu)
 
 ## Oyun Hakkında
 
@@ -75,35 +75,42 @@ Her turda yapabilecekleriniz:
 ## Android'e Kurulum
 
 ### Gereksinimler
-- Android 5.0 (Lollipop) veya üstü
-- ~100 MB boş alan
+- Android 7.0 (API 24) veya üstü — **Android 16 (API 36) desteklenir**
+- ~80 MB boş alan (arm64 APK ~77 MB)
 - Yatay ekran önerilir
+- Android 15+ cihazlar 16 KB bellek sayfası kullanabilir; bu sürüm native kütüphaneleri 16 KB hizalıdır
 
 ### APK indir (telefonunuzdan)
-**v0.1.1 (kurulabilir):** https://github.com/EkremTezcanSaridag/Iron_front/releases/download/v0.1.1/IronFronts-v0.1.1-debug.apk
+**v0.1.2 (Android 16 kurulumu):** https://github.com/EkremTezcanSaridag/Iron_front/releases/download/v0.1.2/IronFronts-v0.1.2-debug.apk
 
-v0.1 APK'sı modern Android'de "Paket geçersiz göründüğünden uygulama yüklenemedi" hatası veriyordu. Godot 4.3 klasik (Gradle'sız) dışa aktarma, iki `provider` öğesine aynı `android:authorities` değerini yazıyor ve vulkan `uses-feature` özniteliklerini string olarak kodluyor; PackageManager paketi reddediyor. v0.1.1 bu manifest'i düzeltip **apksigner v2+v3** ile imzalar.
+v0.1 / v0.1.1 modern telefonlarda (özellikle Android 15/16) **"Paket geçersiz göründüğünden uygulama yüklenemedi"** verebiliyordu. Godot 4.3 klasik (Gradle'sız) şablon:
+- iki `provider` öğesine aynı `android:authorities` değerini yazıyordu
+- native `.so` dosyalarını 4 KB ELF hizasıyla paketliyordu (Android 15+ 16 KB sayfa boyutu bunu reddeder)
+
+v0.1.2 **Godot 4.7.2 Gradle** ile üretilir (`targetSdk 36`, `minSdk 24`, uncompressed arm64 `.so`, `zipalign -P 16`, APK Signature Scheme **v2+v3**). `armeabi-v7a` bilerek yoktur: 32-bit Godot kütüphaneleri hâlâ 4 KB hizalıdır.
 
 ### Kurulum Adımları
 1. Telefon ayarlarından **"Bilinmeyen kaynaklardan yükleme"** izni verin
-2. Yukarıdaki `IronFronts-v0.1.1-debug.apk` dosyasını indirin
+2. Yukarıdaki `IronFronts-v0.1.2-debug.apk` dosyasını indirin
 3. Dosyayı açın ve yüklemeyi onaylayın
 4. Oyunu başlatın
 
 ### Geliştirici: APK nasıl üretilir
-Godot Editor'dan ham "Export" modern Android'de kurulmayan bir APK üretebilir. Bunun yerine:
+Godot 4.3 klasik export veya apktool yamaları kullanmayın. Temiz Gradle çıktısı için:
 
 ```bash
-./export_android.sh /opt/cursor/artifacts/IronFronts-v0.1.1-debug.apk
+# Godot 4.7.2 + OpenJDK 17 + Android SDK platform 36 / NDK 29
+./export_android.sh IronFronts-v0.1.2-debug.apk
 ```
 
-Betik Godot ile debug APK üretir, manifest'teki yinelenen provider authority'yi ayırır, `zipalign` uygular ve `apksigner` ile v1+v2+v3 imzalar.
+Betik Gradle debug APK'yı önce `/tmp` altına yazar (bazı FUSE bağları ~100 MB kopyayı reddeder), sonra hedefe kopyalar; `apksigner` v2+v3, `zipalign -P 16` ve ELF 16 KB hizasını doğrular.
 
 ## Godot'ta Açma
 
 ### Gereksinimler
-- Godot Engine 4.3 veya üstü
+- Godot Engine **4.7.2** (4.4+ 16 KB native hiza için; 4.3 klasik şablon Android 15/16'da kurulmaz)
 - GDScript desteği
+- Android dışa aktarma: OpenJDK 17, Android SDK platform 36, build-tools 36.1.0, NDK 29
 
 ### Proje Yapısı
 ```
@@ -130,13 +137,13 @@ IronFronts/
 ```
 
 ### Godot'ta Açma
-1. Godot Engine 4.3'ü açın
+1. Godot Engine 4.7.2'yi açın
 2. **"Import"** butonuna tıklayın
 3. `project.godot` dosyasını seçin
 4. Projeyi açın ve oynatın
 
 ### Android'e Dışa Aktarma
-Godot'un klasik APK şablonu (Gradle kapalı) modern Android'de geçersiz paket üretir. Kurulu bir APK için `./export_android.sh` kullanın (apktool + zipalign + apksigner). Gradle şablonunu kurduysanız Godot Editor'dan da Gradle build ile dışa aktarabilirsiniz.
+Klasik (Gradle kapalı) şablon ve apktool yamaları kullanmayın. `./export_android.sh` Godot 4.7.2 Gradle build çalıştırır (`use_gradle_build=true`, `compress_native_libraries=false`, `target_sdk=36`). Editor'dan dışa aktarırken de aynı Android preset'i kullanın ve "Install Android Build Template" ile `android/build` kurulu olsun.
 
 ## Bilinen Kısıtlamalar (v0.1)
 
@@ -181,10 +188,10 @@ Bu ilk sürümde basitleştirilmiş veya eksik olan özellikler:
 
 ## Teknik Bilgiler
 
-- **Motor**: Godot Engine 4.3
+- **Motor**: Godot Engine 4.7.2
 - **Dil**: GDScript
-- **Platform**: Android (API 21+)
-- **Boyut**: ~46 MB
+- **Platform**: Android (minSdk 24 / targetSdk 36, arm64-v8a)
+- **Boyut**: ~77 MB (uncompressed 16 KB-aligned native libs)
 - **UI Dili**: Türkçe
 - **Kod/Yorumlar**: İngilizce
 
