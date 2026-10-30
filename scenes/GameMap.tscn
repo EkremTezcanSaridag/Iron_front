@@ -1,0 +1,259 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcwhf5c3vxe4u"]
+
+[ext_resource type="Script" path="res://scripts/GameMap.gd" id="1_game_map"]
+[ext_resource type="Script" path="res://scripts/MapView.gd" id="2_map_view"]
+
+[node name="GameMap" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_game_map")
+
+[node name="MapViewport" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="MapViewport"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="MapView" type="Node2D" parent="MapViewport/SubViewport"]
+script = ExtResource("2_map_view")
+
+[node name="Camera2D" type="Camera2D" parent="MapViewport/SubViewport/MapView"]
+position = Vector2(960, 540)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="TopBar" type="Panel" parent="UI"]
+offset_right = 1920.0
+offset_bottom = 120.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/TopBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="CountryInfo" type="VBoxContainer" parent="UI/TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="CountryName" type="Label" parent="UI/TopBar/HBoxContainer/CountryInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Ülke"
+
+[node name="TurnLabel" type="Label" parent="UI/TopBar/HBoxContainer/CountryInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Tur: 0"
+
+[node name="Resources" type="VBoxContainer" parent="UI/TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="MoneyLabel" type="Label" parent="UI/TopBar/HBoxContainer/Resources"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Para: 0"
+
+[node name="ManpowerLabel" type="Label" parent="UI/TopBar/HBoxContainer/Resources"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "İnsan Gücü: 0"
+
+[node name="IndustryLabel" type="Label" parent="UI/TopBar/HBoxContainer/Resources"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Sanayi: 0"
+
+[node name="Status" type="VBoxContainer" parent="UI/TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="StabilityLabel" type="Label" parent="UI/TopBar/HBoxContainer/Status"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "İstikrar: 100"
+
+[node name="WarWearinessLabel" type="Label" parent="UI/TopBar/HBoxContainer/Status"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Savaş Yorgunluğu: 0"
+
+[node name="Actions" type="HBoxContainer" parent="UI/TopBar/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="EndTurnButton" type="Button" parent="UI/TopBar/HBoxContainer/Actions"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Turu Bitir"
+
+[node name="MenuButton" type="Button" parent="UI/TopBar/HBoxContainer/Actions"]
+custom_minimum_size = Vector2(120, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Menü"
+
+[node name="BottomPanel" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -400.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TabContainer" type="TabContainer" parent="UI/BottomPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Eyaletler" type="ScrollContainer" parent="UI/BottomPanel/TabContainer"]
+layout_mode = 2
+
+[node name="ProvinceList" type="VBoxContainer" parent="UI/BottomPanel/TabContainer/Eyaletler"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Diplomasi" type="ScrollContainer" parent="UI/BottomPanel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="DiplomacyList" type="VBoxContainer" parent="UI/BottomPanel/TabContainer/Diplomasi"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Kader Yolları" type="ScrollContainer" parent="UI/BottomPanel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="KaderList" type="VBoxContainer" parent="UI/BottomPanel/TabContainer/Kader Yolları"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Araştırma" type="ScrollContainer" parent="UI/BottomPanel/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="ResearchList" type="VBoxContainer" parent="UI/BottomPanel/TabContainer/Araştırma"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RightPanel" type="Panel" parent="UI"]
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -450.0
+offset_top = 120.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ProvinceInfo" type="VBoxContainer" parent="UI/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="UI/RightPanel/ProvinceInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Eyalet Bilgisi"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/RightPanel/ProvinceInfo"]
+layout_mode = 2
+
+[node name="ProvinceName" type="Label" parent="UI/RightPanel/ProvinceInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Eyalet Seç"
+
+[node name="Owner" type="Label" parent="UI/RightPanel/ProvinceInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Sahip: -"
+
+[node name="UnitsLabel" type="Label" parent="UI/RightPanel/ProvinceInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Birlikler: 0"
+
+[node name="ResourcesLabel" type="Label" parent="UI/RightPanel/ProvinceInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Kaynaklar:"
+
+[node name="HSeparator2" type="HSeparator" parent="UI/RightPanel/ProvinceInfo"]
+layout_mode = 2
+
+[node name="ActionsLabel" type="Label" parent="UI/RightPanel/ProvinceInfo"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Eylemler:"
+
+[node name="RecruitButton" type="Button" parent="UI/RightPanel/ProvinceInfo"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Piyade İşe Al"
+
+[node name="RecruitCavalryButton" type="Button" parent="UI/RightPanel/ProvinceInfo"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Süvari İşe Al"
+
+[node name="RecruitArtilleryButton" type="Button" parent="UI/RightPanel/ProvinceInfo"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Topçu İşe Al"
+
+[node name="PanelToggle" type="Button" parent="UI"]
+offset_left = 20.0
+offset_top = 140.0
+offset_right = 220.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 24
+text = "Paneller"
+
+[connection signal="pressed" from="UI/TopBar/HBoxContainer/Actions/EndTurnButton" to="." method="_on_end_turn_pressed"]
+[connection signal="pressed" from="UI/TopBar/HBoxContainer/Actions/MenuButton" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="UI/RightPanel/ProvinceInfo/RecruitButton" to="." method="_on_recruit_pressed" binds= ["infantry"]]
+[connection signal="pressed" from="UI/RightPanel/ProvinceInfo/RecruitCavalryButton" to="." method="_on_recruit_pressed" binds= ["cavalry"]]
+[connection signal="pressed" from="UI/RightPanel/ProvinceInfo/RecruitArtilleryButton" to="." method="_on_recruit_pressed" binds= ["artillery"]]
+[connection signal="pressed" from="UI/PanelToggle" to="." method="_on_panel_toggle_pressed"]

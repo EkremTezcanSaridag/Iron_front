@@ -1,0 +1,21 @@
+# Godot 4+ specific ignores
+.godot/
+*.import
+*.translation
+
+# Godot-specific
+.mono/
+data_*/
+
+# Build tools (not part of the project)
+tools/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

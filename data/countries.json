@@ -1,0 +1,336 @@
+{
+  "ottoman_empire": {
+    "name": "Osmanlı İmparatorluğu",
+    "name_en": "Ottoman Empire",
+    "color": [228, 24, 24],
+    "capital": "istanbul",
+    "starting_resources": {
+      "money": 500,
+      "manpower": 300,
+      "industry": 40
+    },
+    "core_provinces": ["istanbul", "ankara", "izmir", "damascus", "baghdad", "jerusalem"],
+    "starting_alliance": "central_powers",
+    "kader_paths": {
+      "join_central": {
+        "name": "Merkezi Güçlere Katıl",
+        "description": "Almanya ve Avusturya-Macaristan ile ittifak kur",
+        "decisions": [
+          {"id": "negotiate_germany", "name": "Almanya ile Görüş", "turns": 2, "effect": "relation_germany_+50"},
+          {"id": "military_cooperation", "name": "Askeri İşbirliği", "turns": 3, "effect": "unlock_german_advisors"},
+          {"id": "join_war", "name": "Savaşa Gir", "turns": 1, "effect": "join_central_powers"}
+        ]
+      },
+      "neutrality": {
+        "name": "Tarafsızlık ve Reform",
+        "description": "Savaştan uzak dur, ülkeyi modernleştir",
+        "decisions": [
+          {"id": "declare_neutrality", "name": "Tarafsızlığı İlan Et", "turns": 2, "effect": "all_relations_+20"},
+          {"id": "economic_reform", "name": "Ekonomik Reform", "turns": 4, "effect": "industry_+30"},
+          {"id": "military_modernization", "name": "Ordu Modernizasyonu", "turns": 5, "effect": "unit_strength_+15"}
+        ]
+      },
+      "eastern_campaign": {
+        "name": "Doğu Seferi",
+        "description": "Kafkasya ve Pers Körfezi'ne genişle",
+        "requires": "won_gallipoli",
+        "decisions": [
+          {"id": "plan_offensive", "name": "Taarruz Planla", "turns": 2, "effect": "unlock_eastern_units"},
+          {"id": "caucasus_campaign", "name": "Kafkasya Seferi", "turns": 4, "effect": "claim_caucasus"},
+          {"id": "persian_advance", "name": "İran'a İlerle", "turns": 3, "effect": "claim_persia"}
+        ]
+      },
+      "arab_relations": {
+        "name": "Arap İttifakı",
+        "description": "Arap liderlerle ilişkileri güçlendir",
+        "decisions": [
+          {"id": "improve_arab_relations", "name": "Arap İlişkilerini İyileştir", "turns": 3, "effect": "arab_loyalty_+40"},
+          {"id": "grant_autonomy", "name": "Özerklik Ver", "turns": 2, "effect": "stability_+10"},
+          {"id": "united_front", "name": "Birleşik Cephe", "turns": 4, "effect": "unlock_arab_units"}
+        ]
+      }
+    }
+  },
+  "germany": {
+    "name": "Almanya İmparatorluğu",
+    "name_en": "German Empire",
+    "color": [128, 128, 128],
+    "capital": "berlin",
+    "starting_resources": {
+      "money": 800,
+      "manpower": 500,
+      "industry": 100
+    },
+    "core_provinces": ["berlin", "munich", "hamburg", "cologne", "frankfurt"],
+    "starting_alliance": "central_powers",
+    "kader_paths": {
+      "schlieffen_plan": {
+        "name": "Schlieffen Planı",
+        "description": "Fransa'yı hızlı yenmek için batıda taarruz",
+        "decisions": [
+          {"id": "mobilize_west", "name": "Batıda Seferberlik", "turns": 2, "effect": "western_army_bonus"},
+          {"id": "belgium_invasion", "name": "Belçika'yı İşgal Et", "turns": 1, "effect": "invade_belgium"},
+          {"id": "paris_offensive", "name": "Paris Taarruzu", "turns": 4, "effect": "attack_france"}
+        ]
+      },
+      "eastern_defense": {
+        "name": "Doğu Savunması",
+        "description": "Rusya'ya karşı savunma pozisyonu al",
+        "decisions": [
+          {"id": "fortify_east", "name": "Doğuyu Tahkim Et", "turns": 3, "effect": "eastern_defense_+30"},
+          {"id": "counter_offensive", "name": "Karşı Taarruz", "turns": 4, "effect": "attack_russia"},
+          {"id": "treaty_negotiations", "name": "Barış Görüşmeleri", "turns": 2, "effect": "peace_with_russia"}
+        ]
+      },
+      "unrestricted_submarine": {
+        "name": "Sınırsız Denizaltı Savaşı",
+        "description": "Düşman gemilerini batır",
+        "decisions": [
+          {"id": "build_uboats", "name": "U-Bot İnşası", "turns": 3, "effect": "unlock_submarines"},
+          {"id": "declare_unrestricted", "name": "Sınırsız Savaş İlan Et", "turns": 1, "effect": "naval_blockade"},
+          {"id": "total_blockade", "name": "Tam Abluka", "turns": 5, "effect": "uk_resources_-50"}
+        ]
+      }
+    }
+  },
+  "austria_hungary": {
+    "name": "Avusturya-Macaristan",
+    "name_en": "Austria-Hungary",
+    "color": [255, 215, 0],
+    "capital": "vienna",
+    "starting_resources": {
+      "money": 600,
+      "manpower": 400,
+      "industry": 70
+    },
+    "core_provinces": ["vienna", "budapest", "prague", "krakow", "lviv"],
+    "starting_alliance": "central_powers",
+    "kader_paths": {
+      "serbian_campaign": {
+        "name": "Sırbistan Seferi",
+        "description": "Sırbistan'ı yok et",
+        "decisions": [
+          {"id": "ultimatum", "name": "Ültimatom Gönder", "turns": 1, "effect": "trigger_war"},
+          {"id": "invasion", "name": "İşgal", "turns": 3, "effect": "attack_serbia"},
+          {"id": "occupation", "name": "İşgal Et", "turns": 2, "effect": "annex_serbia"}
+        ]
+      },
+      "italian_front": {
+        "name": "İtalyan Cephesi",
+        "description": "Güneyde savun",
+        "decisions": [
+          {"id": "alpine_defense", "name": "Alp Savunması", "turns": 3, "effect": "italian_defense_+40"},
+          {"id": "caporetto", "name": "Caporetto Taarruzu", "turns": 4, "effect": "defeat_italy"}
+        ]
+      },
+      "internal_stability": {
+        "name": "İç İstikrar",
+        "description": "Çok uluslu imparatorluğu bir arada tut",
+        "decisions": [
+          {"id": "autonomy_hungary", "name": "Macaristan'a Özerklik", "turns": 3, "effect": "stability_+15"},
+          {"id": "czech_concessions", "name": "Çek Tavizleri", "turns": 2, "effect": "stability_+10"},
+          {"id": "unified_command", "name": "Birleşik Komuta", "turns": 4, "effect": "military_efficiency_+20"}
+        ]
+      }
+    }
+  },
+  "france": {
+    "name": "Fransa",
+    "name_en": "France",
+    "color": [0, 85, 164],
+    "capital": "paris",
+    "starting_resources": {
+      "money": 700,
+      "manpower": 450,
+      "industry": 80
+    },
+    "core_provinces": ["paris", "marseille", "lyon", "bordeaux", "strasbourg"],
+    "starting_alliance": "entente",
+    "kader_paths": {
+      "defense_of_paris": {
+        "name": "Paris Savunması",
+        "description": "Alman ilerleyişini durdur",
+        "decisions": [
+          {"id": "mobilize", "name": "Seferberlik", "turns": 1, "effect": "army_ready"},
+          {"id": "marne_defense", "name": "Marne Savunması", "turns": 3, "effect": "stop_germans"},
+          {"id": "stabilize_front", "name": "Cepheyi Sabitle", "turns": 2, "effect": "trench_warfare"}
+        ]
+      },
+      "offensive_spirit": {
+        "name": "Taarruz Ruhu",
+        "description": "Düşmanı geri püskürt",
+        "decisions": [
+          {"id": "plan_offensive", "name": "Taarruz Planla", "turns": 2, "effect": "offensive_bonus"},
+          {"id": "verdun_defense", "name": "Verdun Savunması", "turns": 5, "effect": "hold_verdun"},
+          {"id": "counterattack", "name": "Karşı Taarruz", "turns": 4, "effect": "push_germany"}
+        ]
+      },
+      "colonial_mobilization": {
+        "name": "Sömürge Seferberliği",
+        "description": "Afrika ve Asya'dan asker getir",
+        "decisions": [
+          {"id": "recruit_colonies", "name": "Sömürgelerden Asker Al", "turns": 3, "effect": "manpower_+200"},
+          {"id": "colonial_industry", "name": "Sömürge Sanayisi", "turns": 4, "effect": "industry_+30"}
+        ]
+      }
+    }
+  },
+  "united_kingdom": {
+    "name": "Birleşik Krallık",
+    "name_en": "United Kingdom",
+    "color": [200, 16, 46],
+    "capital": "london",
+    "starting_resources": {
+      "money": 1000,
+      "manpower": 350,
+      "industry": 90
+    },
+    "core_provinces": ["london", "manchester", "glasgow", "belfast", "cardiff"],
+    "starting_alliance": "entente",
+    "kader_paths": {
+      "bef_deployment": {
+        "name": "Kara Ordusu Konuşlandır",
+        "description": "Kıtaya asker gönder",
+        "decisions": [
+          {"id": "send_bef", "name": "Orduyu Gönder", "turns": 2, "effect": "troops_to_france"},
+          {"id": "expand_army", "name": "Orduyu Genişlet", "turns": 4, "effect": "manpower_+300"},
+          {"id": "coordinate_allies", "name": "Müttefiklerle Koordinasyon", "turns": 2, "effect": "alliance_bonus"}
+        ]
+      },
+      "naval_supremacy": {
+        "name": "Deniz Üstünlüğü",
+        "description": "Denizlere hâkim ol",
+        "decisions": [
+          {"id": "blockade_germany", "name": "Almanya'yı Ablukaya Al", "turns": 3, "effect": "germany_resources_-40"},
+          {"id": "hunt_uboats", "name": "U-Botları Avla", "turns": 4, "effect": "convoy_protection"},
+          {"id": "jutland_battle", "name": "Jutland Muharebesi", "turns": 2, "effect": "naval_victory"}
+        ]
+      },
+      "gallipoli_campaign": {
+        "name": "Çanakkale Seferi",
+        "description": "İstanbul'u işgal et",
+        "decisions": [
+          {"id": "plan_landing", "name": "Çıkartma Planla", "turns": 2, "effect": "invasion_ready"},
+          {"id": "gallipoli_landing", "name": "Çanakkale Çıkarması", "turns": 4, "effect": "attack_ottoman"},
+          {"id": "capture_istanbul", "name": "İstanbul'u Al", "turns": 3, "effect": "ottoman_defeat"}
+        ]
+      }
+    }
+  },
+  "russia": {
+    "name": "Rusya İmparatorluğu",
+    "name_en": "Russian Empire",
+    "color": [0, 128, 0],
+    "capital": "moscow",
+    "starting_resources": {
+      "money": 600,
+      "manpower": 800,
+      "industry": 60
+    },
+    "core_provinces": ["moscow", "st_petersburg", "kiev", "minsk", "riga"],
+    "starting_alliance": "entente",
+    "kader_paths": {
+      "eastern_offensive": {
+        "name": "Doğu Taarruzu",
+        "description": "Almanya ve Avusturya'ya saldır",
+        "decisions": [
+          {"id": "mobilize", "name": "Seferberlik", "turns": 2, "effect": "army_ready"},
+          {"id": "east_prussia", "name": "Doğu Prusya Seferi", "turns": 3, "effect": "attack_germany"},
+          {"id": "galicia", "name": "Galiçya Taarruzu", "turns": 4, "effect": "attack_austria"}
+        ]
+      },
+      "brusilov_offensive": {
+        "name": "Brusilov Taarruzu",
+        "description": "Büyük yaz taarruzu",
+        "decisions": [
+          {"id": "plan_offensive", "name": "Taarruz Planla", "turns": 3, "effect": "offensive_ready"},
+          {"id": "breakthrough", "name": "Gedik Aç", "turns": 4, "effect": "break_austrian_line"},
+          {"id": "exploit", "name": "İstismar Et", "turns": 2, "effect": "capture_territory"}
+        ]
+      },
+      "revolution_crisis": {
+        "name": "Devrim Krizi",
+        "description": "İç karışıklığı yönet",
+        "requires": "high_war_weariness",
+        "decisions": [
+          {"id": "suppress_dissent", "name": "Muhalifleri Baskıla", "turns": 2, "effect": "stability_+5"},
+          {"id": "reform_attempt", "name": "Reform Dene", "turns": 3, "effect": "stability_+15"},
+          {"id": "revolution", "name": "Devrim Patlak Veriyor", "turns": 1, "effect": "game_over_or_new_government"}
+        ]
+      }
+    }
+  },
+  "italy": {
+    "name": "İtalya",
+    "name_en": "Italy",
+    "color": [0, 146, 70],
+    "capital": "rome",
+    "starting_resources": {
+      "money": 400,
+      "manpower": 350,
+      "industry": 50
+    },
+    "core_provinces": ["rome", "milan", "turin", "naples", "venice"],
+    "starting_alliance": "neutral",
+    "kader_paths": {
+      "join_entente": {
+        "name": "İtilaf'a Katıl",
+        "description": "Müttefiklerle savaş",
+        "decisions": [
+          {"id": "negotiate_entente", "name": "İtilaf ile Görüş", "turns": 2, "effect": "territorial_promises"},
+          {"id": "leave_triple", "name": "Üçlü İttifak'tan Çık", "turns": 1, "effect": "break_alliance"},
+          {"id": "join_war", "name": "Savaşa Gir", "turns": 1, "effect": "join_entente"}
+        ]
+      },
+      "alpine_war": {
+        "name": "Alp Savaşı",
+        "description": "Avusturya'ya karşı dağlarda savaş",
+        "requires": "at_war_with_austria",
+        "decisions": [
+          {"id": "isonzo_battles", "name": "İsonzo Muharebeleri", "turns": 5, "effect": "attrition_war"},
+          {"id": "mountain_assault", "name": "Dağ Taarruzu", "turns": 4, "effect": "slow_advance"}
+        ]
+      },
+      "stay_neutral": {
+        "name": "Tarafsız Kal",
+        "description": "Savaştan uzak dur",
+        "decisions": [
+          {"id": "declare_neutrality", "name": "Tarafsızlık İlan Et", "turns": 1, "effect": "neutral"},
+          {"id": "profit_from_war", "name": "Savaştan Kâr Et", "turns": 4, "effect": "industry_+40"}
+        ]
+      }
+    }
+  },
+  "serbia": {
+    "name": "Sırbistan",
+    "name_en": "Serbia",
+    "color": [198, 32, 32],
+    "capital": "belgrade",
+    "starting_resources": {
+      "money": 200,
+      "manpower": 150,
+      "industry": 20
+    },
+    "core_provinces": ["belgrade", "nis"],
+    "starting_alliance": "entente",
+    "kader_paths": {
+      "resistance": {
+        "name": "Direniş",
+        "description": "Avusturya işgaline karşı koy",
+        "decisions": [
+          {"id": "mobilize", "name": "Seferberlik", "turns": 1, "effect": "army_ready"},
+          {"id": "defend", "name": "Savun", "turns": 3, "effect": "hold_territory"},
+          {"id": "retreat", "name": "Stratejik Geri Çekilme", "turns": 2, "effect": "save_army"}
+        ]
+      },
+      "balkan_unity": {
+        "name": "Balkan Birliği",
+        "description": "Balkan ülkeleriyle ittifak",
+        "decisions": [
+          {"id": "contact_bulgaria", "name": "Bulgaristan ile Temas", "turns": 2, "effect": "improve_relations"},
+          {"id": "balkan_alliance", "name": "Balkan İttifakı", "turns": 3, "effect": "allied_support"}
+        ]
+      }
+    }
+  }
+}
