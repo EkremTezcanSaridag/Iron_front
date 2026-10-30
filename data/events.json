@@ -1,0 +1,176 @@
+{
+  "shelter": [
+    {
+      "id": "raiders",
+      "title": "Kapıdaki Gölgeler",
+      "body": "Telsiz cızırtısının ardından beton kapıya üç sert vuruş. Dışarıda silahlı yağmacılar var. 'Açın,' diyor biri. 'Ya da kırarız.'",
+      "choices": [
+        {"id": "fight", "label": "Pusuya yat, ateş et", "need_ammo": 3},
+        {"id": "bribe", "label": "Yiyecek bırakıp sav", "need_food": 8},
+        {"id": "hide", "label": "Işıkları kapat, bekle"}
+      ]
+    },
+    {
+      "id": "stranger",
+      "title": "Yabancı",
+      "body": "Havalandırma ızgarasının ardından zayıf bir ses: 'Lütfen. Üç gündür su görmedim. Doktorum.' Sığınakta yer dar, güven daha dar.",
+      "choices": [
+        {"id": "accept", "label": "İçeri al"},
+        {"id": "refuse", "label": "Kapıyı kapat"},
+        {"id": "share", "label": "Su ver, içeri alma", "need_water": 4}
+      ]
+    },
+    {
+      "id": "blackout",
+      "title": "Jeneratör Öksürüyor",
+      "body": "Lambalar bir an sönüp kirli sarıya dönüyor. Atölyeden yanık kablo kokusu geliyor. Bu gece karanlık uzun olabilir.",
+      "choices": [
+        {"id": "fix", "label": "Hurdayla onar", "need_scrap": 6},
+        {"id": "ration", "label": "Sadece reviri çalıştır"},
+        {"id": "ignore", "label": "Şansa bırak"}
+      ]
+    },
+    {
+      "id": "sickness",
+      "title": "Öksürük",
+      "body": "Koridorda kuru bir öksürük yankılanıyor. Alınlar ısınıyor. Biri 'sadece toz' diyor ama kimse inanmıyor.",
+      "choices": [
+        {"id": "meds", "label": "İlaç dağıt", "need_medicine": 3},
+        {"id": "quarantine", "label": "Hastaları ayır"},
+        {"id": "work", "label": "Kimse durmasın"}
+      ]
+    },
+    {
+      "id": "radio_ping",
+      "title": "Kısa Dalga",
+      "body": "Telsiz, gece yarısı bir cümle kaçırıyor: '...güvenli koridor, on dört gün, kuzey barajı...' Sonra yalnızca rüzgâr.",
+      "choices": [
+        {"id": "focus", "label": "Telsize yığıl"},
+        {"id": "note", "label": "Not al, işe dön"},
+        {"id": "hope", "label": "Herkese müjdele"}
+      ]
+    },
+    {
+      "id": "leak",
+      "title": "Su Borusu",
+      "body": "Arıtmanın arkasından ince bir sızıntı, sonra bir fışkırma. Paslı dirsek sonunda teslim oldu.",
+      "choices": [
+        {"id": "patch", "label": "Yamala", "need_scrap": 5},
+        {"id": "bucket", "label": "Kovalarla kurtar"},
+        {"id": "cut", "label": "Vana kapat, idare et"}
+      ]
+    },
+    {
+      "id": "dream",
+      "title": "Eski Bir Şarkı",
+      "body": "Birisi mutfakta alçak sesle, felaketten önceki bir diziyi mırıldanıyor. Diğerleri durup dinliyor. Bir an için dışarı yok.",
+      "choices": [
+        {"id": "sing", "label": "Katıl"},
+        {"id": "record", "label": "Telsize kaydet"},
+        {"id": "sleep", "label": "Sessizlik iste"}
+      ]
+    },
+    {
+      "id": "fight",
+      "title": "Rasyon Kavgası",
+      "body": "Depoda iki tabak çarpışıyor. 'O dün fazladan aldı!' Oda daralıyor. Bunu şimdi kesmezsen yarın kan çıkar.",
+      "choices": [
+        {"id": "mediate", "label": "Adil böl"},
+        {"id": "extra", "label": "İkisini de doyur", "need_food": 4},
+        {"id": "punish", "label": "Nöbetle cezalandır"}
+      ]
+    },
+    {
+      "id": "cavein",
+      "title": "Tavan İnliyor",
+      "body": "Üst katın betonunda bir çatlak uzuyor. Toz yağmur gibi. Bir kiriş daha dayanır mı, yoksa bu gece mi?",
+      "choices": [
+        {"id": "brace", "label": "Destek at", "need_scrap": 8},
+        {"id": "move", "label": "O odayı boşalt"},
+        {"id": "pray", "label": "İnşallah durur"}
+      ]
+    },
+    {
+      "id": "garden",
+      "title": "İlk Yeşil",
+      "body": "Hidroponikte cılız bir filiz ışığa uzanıyor. Küçük, çirkin ve muhteşem. Biri ağlamaklı gülüyor.",
+      "choices": [
+        {"id": "cheer", "label": "Kutla"},
+        {"id": "guard", "label": "Nöbetçi koy"},
+        {"id": "science", "label": "Klonlamayı dene"}
+      ]
+    },
+    {
+      "id": "ammo_cache",
+      "title": "Duvarın Ardı",
+      "body": "Atölyede bir panel düşüyor. Arkada eski bir mühimmat kutusu, paslı ama dolu. Sahibi kimdi, sormamak daha iyi.",
+      "choices": [
+        {"id": "take", "label": "Al, sakla"},
+        {"id": "share", "label": "Herkese göster"},
+        {"id": "trap", "label": "Tuzak olabilir, bırak"}
+      ]
+    },
+    {
+      "id": "night_noise",
+      "title": "Boru İçinden",
+      "body": "Gece, su borularından gelen bir tıkırtı. Kod gibi. Ya da sadece soğuyan metal. Uyku kaçtı.",
+      "choices": [
+        {"id": "listen", "label": "Telsizi aç, dinle"},
+        {"id": "patrol", "label": "Silahla devriye"},
+        {"id": "sleep", "label": "Kulak tıkacı, uyu"}
+      ]
+    }
+  ],
+  "expedition": [
+    {
+      "id": "alley",
+      "title": "Ara Sokak",
+      "body": "İki yanmış arabanın arasında bir çanta var. Üzerinde kurumuş bir el izi. Uzaklarda bir köpek havlıyor.",
+      "choices": [
+        {"id": "grab", "label": "Çantayı al, kaç"},
+        {"id": "wait", "label": "Pusuyu bekle"},
+        {"id": "leave", "label": "Bırak, ilerle"}
+      ]
+    },
+    {
+      "id": "child",
+      "title": "Boş Beşik",
+      "body": "Bir dairenin kapısı aralık. İçeride oyuncak, toz ve bir not: 'Suyu mutfakta bıraktım.' Not taze değil. Belki.",
+      "choices": [
+        {"id": "search", "label": "Evi ara"},
+        {"id": "call", "label": "Seslen"},
+        {"id": "skip", "label": "Kapıyı kapa"}
+      ]
+    },
+    {
+      "id": "patrol",
+      "title": "Motor Sesi",
+      "body": "Uzakta tek silindirli bir motor. Yağmacı motosikleti. Işıklar sizin yönünüze dönmeden bir seçim lazım.",
+      "choices": [
+        {"id": "hide", "label": "Enkazın arkasına yat"},
+        {"id": "ambush", "label": "Pusuya yat", "need_ammo": 2},
+        {"id": "run", "label": "Ters sokağa kaç"}
+      ]
+    },
+    {
+      "id": "well",
+      "title": "Kapalı Kuyu",
+      "body": "Avludaki kapağın altından serin hava geliyor. Su olabilir. Ya da gaz. İp kısa.",
+      "choices": [
+        {"id": "descend", "label": "İn"},
+        {"id": "sample", "label": "Kova sarkıt"},
+        {"id": "mark", "label": "İşaretle, dön"}
+      ]
+    },
+    {
+      "id": "trader",
+      "title": "Maskeli",
+      "body": "Bir vitrinin ardından maskeli biri el sallar. 'İlaç ver, harita vereyim. Kuzey barajı gerçek.' Gözleri gülmüyor.",
+      "choices": [
+        {"id": "trade", "label": "3 ilaç ver", "need_medicine": 3},
+        {"id": "rob", "label": "Silah çek"},
+        {"id": "walk", "label": "Yürü geç"}
+      ]
+    }
+  ]
+}

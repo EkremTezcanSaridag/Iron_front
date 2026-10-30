@@ -1,0 +1,44 @@
+# Flutter/Dart
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+.widget_preview/
+
+# Android
+/android/app/debug
+/android/app/profile
+/android/app/release
+/android/.gradle
+/android/local.properties
+/android/.cxx
+
+# Keystore — never commit (public repo)
+*.jks
+*.keystore
+key.properties
+android/key.properties
+keystore/*.jks
+
+# Local APKs
+*.apk
+*.apk.idsig
+*.aab
+
+# SDK / tools (not part of the project)
+tools/
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Symbolication / obfuscation
+app.*.symbols
+app.*.map.json

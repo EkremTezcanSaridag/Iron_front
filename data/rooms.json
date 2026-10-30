@@ -1,0 +1,74 @@
+{
+  "living": {
+    "title": "Yaşam Alanı",
+    "blurb": "Yatakhane. Gece dinlenenlerin moralini yükseltir.",
+    "build_scrap": 12,
+    "upgrade_scrap": 18,
+    "power": 1,
+    "workers": 2,
+    "unlock_day": 1
+  },
+  "hydroponics": {
+    "title": "Hidroponik",
+    "blurb": "Yeraltı tarlası. Yiyecek üretir, elektrik ister.",
+    "build_scrap": 16,
+    "upgrade_scrap": 22,
+    "power": 2,
+    "workers": 2,
+    "unlock_day": 1
+  },
+  "water": {
+    "title": "Su Arıtma",
+    "blurb": "Kirli suyu içilebilir kılar.",
+    "build_scrap": 16,
+    "upgrade_scrap": 22,
+    "power": 2,
+    "workers": 2,
+    "unlock_day": 1
+  },
+  "generator": {
+    "title": "Jeneratör",
+    "blurb": "Sığınağın kalbi. Elektrik üretir.",
+    "build_scrap": 20,
+    "upgrade_scrap": 28,
+    "power": 0,
+    "workers": 2,
+    "unlock_day": 1
+  },
+  "storage": {
+    "title": "Depo",
+    "blurb": "Kaynak tavanını yükseltir.",
+    "build_scrap": 10,
+    "upgrade_scrap": 14,
+    "power": 0,
+    "workers": 1,
+    "unlock_day": 1
+  },
+  "infirmary": {
+    "title": "Revir",
+    "blurb": "Yaraları sarar. İlaç tüketir.",
+    "build_scrap": 18,
+    "upgrade_scrap": 24,
+    "power": 1,
+    "workers": 2,
+    "unlock_day": 2
+  },
+  "workshop": {
+    "title": "Atölye",
+    "blurb": "Hurda işler, cephane üretir.",
+    "build_scrap": 18,
+    "upgrade_scrap": 24,
+    "power": 2,
+    "workers": 2,
+    "unlock_day": 2
+  },
+  "radio": {
+    "title": "Telsiz Odası",
+    "blurb": "Dışarıdaki kurtarma sinyalini arar. Asıl hedef.",
+    "build_scrap": 28,
+    "upgrade_scrap": 32,
+    "power": 3,
+    "workers": 2,
+    "unlock_day": 3
+  }
+}
