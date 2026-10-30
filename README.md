@@ -1,6 +1,6 @@
 # Iron Fronts - Birinci Dünya Savaşı Stratejisi
 
-**Versiyon:** 0.1 (İlk Oynanabilir Sürüm)
+**Versiyon:** 0.1.1 (İlk oynanabilir sürüm — Android kurulum düzeltmesi)
 
 ## Oyun Hakkında
 
@@ -79,11 +79,25 @@ Her turda yapabilecekleriniz:
 - ~100 MB boş alan
 - Yatay ekran önerilir
 
+### APK indir (telefonunuzdan)
+**v0.1.1 (kurulabilir):** https://github.com/EkremTezcanSaridag/Iron_front/releases/download/v0.1.1/IronFronts-v0.1.1-debug.apk
+
+v0.1 APK'sı modern Android'de "Paket geçersiz göründüğünden uygulama yüklenemedi" hatası veriyordu. Godot 4.3 klasik (Gradle'sız) dışa aktarma, iki `provider` öğesine aynı `android:authorities` değerini yazıyor ve vulkan `uses-feature` özniteliklerini string olarak kodluyor; PackageManager paketi reddediyor. v0.1.1 bu manifest'i düzeltip **apksigner v2+v3** ile imzalar.
+
 ### Kurulum Adımları
-1. Telefon ayarlarından **"Bilinmeyen Kaynaklardan Yükleme"** izni verin
-2. `IronFronts-v0.1-debug.apk` dosyasını telefonunuza indirin
+1. Telefon ayarlarından **"Bilinmeyen kaynaklardan yükleme"** izni verin
+2. Yukarıdaki `IronFronts-v0.1.1-debug.apk` dosyasını indirin
 3. Dosyayı açın ve yüklemeyi onaylayın
-4. Oyunu başlatın ve eğlenin!
+4. Oyunu başlatın
+
+### Geliştirici: APK nasıl üretilir
+Godot Editor'dan ham "Export" modern Android'de kurulmayan bir APK üretebilir. Bunun yerine:
+
+```bash
+./export_android.sh /opt/cursor/artifacts/IronFronts-v0.1.1-debug.apk
+```
+
+Betik Godot ile debug APK üretir, manifest'teki yinelenen provider authority'yi ayırır, `zipalign` uygular ve `apksigner` ile v1+v2+v3 imzalar.
 
 ## Godot'ta Açma
 
@@ -122,11 +136,7 @@ IronFronts/
 4. Projeyi açın ve oynatın
 
 ### Android'e Dışa Aktarma
-1. Godot'ta projeyi açın
-2. **Project > Export** menüsüne gidin
-3. **Android** ön ayarını seçin
-4. **Export Project** düğmesine tıklayın
-5. APK dosyasını kaydedin
+Godot'un klasik APK şablonu (Gradle kapalı) modern Android'de geçersiz paket üretir. Kurulu bir APK için `./export_android.sh` kullanın (apktool + zipalign + apksigner). Gradle şablonunu kurduysanız Godot Editor'dan da Gradle build ile dışa aktarabilirsiniz.
 
 ## Bilinen Kısıtlamalar (v0.1)
 

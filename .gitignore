@@ -10,6 +10,13 @@ data_*/
 # Build tools (not part of the project)
 tools/
 
+# Godot Android Gradle template (install via Project > Install Android Build Template)
+android/
+
+# Local APKs
+*.apk
+*.apk.idsig
+
 # IDE
 .vscode/
 .idea/
