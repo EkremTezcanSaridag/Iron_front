@@ -20,7 +20,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
-OUT="${1:-$ROOT/IronFronts-v0.1.2-debug.apk}"
+OUT="${1:-$ROOT/Siginak-v0.2.0-debug.apk}"
 GODOT="${GODOT:-$ROOT/tools/Godot_v4.7.2-stable_linux.x86_64}"
 ANDROID_SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-$ROOT/tools/android-sdk}}"
 export JAVA_HOME="${JAVA_HOME:-/usr/lib/jvm/java-17-openjdk-amd64}"
@@ -61,6 +61,26 @@ echo "4.7.2.stable" > "$ROOT/android/.build_version"
 mkdir -p "$ROOT/tools"
 touch "$ROOT/tools/.gdignore"
 
+# Make the real activity exported so `am start -n .../GodotApp` works on API 36.
+# Godot 4.7 puts MAIN/LAUNCHER only on an activity-alias; TCG emulators often
+# fail to resolve the alias ("Activity class does not exist").
+python3 - "$ROOT/android/build" <<'PY'
+from pathlib import Path
+import re, sys
+root = Path(sys.argv[1])
+for rel in ["src/main/AndroidManifest.xml", "src/debug/AndroidManifest.xml"]:
+    p = root / rel
+    if not p.exists():
+        continue
+    text = p.read_text(encoding="utf-8")
+    text = text.replace('android:exported="false"', 'android:exported="true"')
+    text = text.replace('android:screenOrientation="reversePortrait"', 'android:screenOrientation="portrait"')
+    text = text.replace('android:screenOrientation="landscape"', 'android:screenOrientation="portrait"')
+    text = text.replace('android:screenOrientation="reverseLandscape"', 'android:screenOrientation="portrait"')
+    p.write_text(text, encoding="utf-8")
+    print("Patched", p)
+PY
+
 # Point Godot 4.7 editor settings at JDK 17 + this SDK
 SETTINGS_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/godot"
 mkdir -p "$SETTINGS_DIR"
@@ -91,7 +111,7 @@ print(f"Updated {p}")
 PY
 fi
 
-TMP_APK="$(mktemp /tmp/IronFronts-gradle-XXXXXX.apk)"
+TMP_APK="$(mktemp /tmp/Siginak-gradle-XXXXXX.apk)"
 cleanup() { rm -f "$TMP_APK"; }
 trap cleanup EXIT
 

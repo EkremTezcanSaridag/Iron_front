@@ -1,0 +1,13 @@
+{
+  "first": ["Elif", "Ayşe", "Mert", "Cem", "Zeynep", "Deniz", "Hakan", "Selin", "Emre", "Leyla", "Yusuf", "Defne", "Kaan", "Melis", "Baran", "İrem", "Onur", "Naz", "Can", "Pelin", "Oğuz", "Sude", "Arda", "Ceren"],
+  "traits": [
+    {"id": "caliskan", "title": "Çalışkan", "blurb": "Üretimde daha verimli."},
+    {"id": "cesur", "title": "Cesur", "blurb": "Seferlerde daha az yaralanır."},
+    {"id": "sefkatli", "title": "Şefkatli", "blurb": "Revirde daha iyi iyileştirir."},
+    {"id": "gezgin", "title": "Gezgin", "blurb": "Yağmada daha çok ganimet."},
+    {"id": "usta", "title": "Usta", "blurb": "Atölyede hurda ve cephane artar."},
+    {"id": "iyimser", "title": "İyimser", "blurb": "Morali kolay düşmez."},
+    {"id": "paranoyak", "title": "Paranoyak", "blurb": "Baskınlarda uyanık, barışta gergin."},
+    {"id": "huysuz", "title": "Huysuz", "blurb": "Yanındakilerin moralini biraz aşındırır."}
+  ]
+}
